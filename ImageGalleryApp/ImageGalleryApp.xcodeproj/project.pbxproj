@@ -17,8 +17,13 @@
 		0036F84E2B67F02000E9DBDC /* ImageGalleryAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F84D2B67F02000E9DBDC /* ImageGalleryAppUITests.swift */; };
 		0036F8502B67F02000E9DBDC /* ImageGalleryAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F84F2B67F02000E9DBDC /* ImageGalleryAppUITestsLaunchTests.swift */; };
 		0036F8652B67F39100E9DBDC /* HTTPRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8642B67F39100E9DBDC /* HTTPRequestExecutor.swift */; };
-		0036F8672B67F5D900E9DBDC /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8662B67F5D900E9DBDC /* HTTPRequest.swift */; };
+		0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8662B67F5D900E9DBDC /* NetworkTypes.swift */; };
 		0036F8692B685E6600E9DBDC /* NetworkAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8682B685E6600E9DBDC /* NetworkAssembly.swift */; };
+		0036F86C2B685ED500E9DBDC /* ListPhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F86B2B685ED500E9DBDC /* ListPhotosService.swift */; };
+		0036F86E2B685F3700E9DBDC /* ListPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F86D2B685F3700E9DBDC /* ListPhotosResponse.swift */; };
+		0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8712B68633A00E9DBDC /* URLRequestBuilder.swift */; };
+		0036F8782B68682200E9DBDC /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8772B68682200E9DBDC /* Photo.swift */; };
+		0036F87B2B68690200E9DBDC /* ListPhotosHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87A2B68690200E9DBDC /* ListPhotosHTTPRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +58,13 @@
 		0036F84D2B67F02000E9DBDC /* ImageGalleryAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryAppUITests.swift; sourceTree = "<group>"; };
 		0036F84F2B67F02000E9DBDC /* ImageGalleryAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0036F8642B67F39100E9DBDC /* HTTPRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestExecutor.swift; sourceTree = "<group>"; };
-		0036F8662B67F5D900E9DBDC /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		0036F8662B67F5D900E9DBDC /* NetworkTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypes.swift; sourceTree = "<group>"; };
 		0036F8682B685E6600E9DBDC /* NetworkAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAssembly.swift; sourceTree = "<group>"; };
+		0036F86B2B685ED500E9DBDC /* ListPhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosService.swift; sourceTree = "<group>"; };
+		0036F86D2B685F3700E9DBDC /* ListPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosResponse.swift; sourceTree = "<group>"; };
+		0036F8712B68633A00E9DBDC /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		0036F8772B68682200E9DBDC /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		0036F87A2B68690200E9DBDC /* ListPhotosHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosHTTPRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				0036F85F2B67F0E000E9DBDC /* App */,
+				0036F8732B6863B500E9DBDC /* Global */,
 				0036F85D2B67F0CF00E9DBDC /* Services */,
 				0036F8602B67F0F200E9DBDC /* Models */,
 				0036F85E2B67F0D400E9DBDC /* Modules */,
@@ -139,9 +150,11 @@
 		0036F85C2B67F0C800E9DBDC /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0036F86A2B685E9C00E9DBDC /* API */,
+				0036F87C2B686CA100E9DBDC /* RequestExecutor */,
+				0036F86A2B685E9C00E9DBDC /* RequestBuilder */,
+				0036F8792B6868DE00E9DBDC /* Requests */,
 				0036F8682B685E6600E9DBDC /* NetworkAssembly.swift */,
-				0036F8662B67F5D900E9DBDC /* HTTPRequest.swift */,
+				0036F8662B67F5D900E9DBDC /* NetworkTypes.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -149,6 +162,7 @@
 		0036F85D2B67F0CF00E9DBDC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0036F86B2B685ED500E9DBDC /* ListPhotosService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -175,6 +189,8 @@
 		0036F8602B67F0F200E9DBDC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0036F86F2B685F3D00E9DBDC /* BE */,
+				0036F8702B685F4100E9DBDC /* Business */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,12 +216,59 @@
 			path = ImageDetails;
 			sourceTree = "<group>";
 		};
-		0036F86A2B685E9C00E9DBDC /* API */ = {
+		0036F86A2B685E9C00E9DBDC /* RequestBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				0036F8712B68633A00E9DBDC /* URLRequestBuilder.swift */,
+			);
+			path = RequestBuilder;
+			sourceTree = "<group>";
+		};
+		0036F86F2B685F3D00E9DBDC /* BE */ = {
+			isa = PBXGroup;
+			children = (
+				0036F86D2B685F3700E9DBDC /* ListPhotosResponse.swift */,
+			);
+			path = BE;
+			sourceTree = "<group>";
+		};
+		0036F8702B685F4100E9DBDC /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				0036F8772B68682200E9DBDC /* Photo.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		0036F8732B6863B500E9DBDC /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				0036F8742B6863CF00E9DBDC /* Storage */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		0036F8742B6863CF00E9DBDC /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		0036F8792B6868DE00E9DBDC /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				0036F87A2B68690200E9DBDC /* ListPhotosHTTPRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		0036F87C2B686CA100E9DBDC /* RequestExecutor */ = {
 			isa = PBXGroup;
 			children = (
 				0036F8642B67F39100E9DBDC /* HTTPRequestExecutor.swift */,
 			);
-			path = API;
+			path = RequestExecutor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,8 +404,13 @@
 			files = (
 				0036F8652B67F39100E9DBDC /* HTTPRequestExecutor.swift in Sources */,
 				0036F8312B67F01F00E9DBDC /* ViewController.swift in Sources */,
+				0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */,
 				0036F8692B685E6600E9DBDC /* NetworkAssembly.swift in Sources */,
-				0036F8672B67F5D900E9DBDC /* HTTPRequest.swift in Sources */,
+				0036F87B2B68690200E9DBDC /* ListPhotosHTTPRequest.swift in Sources */,
+				0036F86E2B685F3700E9DBDC /* ListPhotosResponse.swift in Sources */,
+				0036F86C2B685ED500E9DBDC /* ListPhotosService.swift in Sources */,
+				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
+				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
 				0036F82F2B67F01F00E9DBDC /* SceneDelegate.swift in Sources */,
 			);

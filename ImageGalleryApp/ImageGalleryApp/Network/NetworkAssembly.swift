@@ -9,6 +9,6 @@ import Foundation
 
 struct NetworkAssembly {
     static var requestExecutor: RequestExecutorProtocol {
-        RequestExecutor(builder: URLRequestBuilder())
+        HTTPRequestExecutor(builder: URLRequestBuilder())
     }
 }
