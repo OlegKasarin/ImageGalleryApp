@@ -99,9 +99,12 @@
 		0036F82B2B67F01F00E9DBDC /* ImageGalleryApp */ = {
 			isa = PBXGroup;
 			children = (
-				0036F82C2B67F01F00E9DBDC /* AppDelegate.swift */,
-				0036F82E2B67F01F00E9DBDC /* SceneDelegate.swift */,
-				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
+				0036F85F2B67F0E000E9DBDC /* App */,
+				0036F85D2B67F0CF00E9DBDC /* Services */,
+				0036F8602B67F0F200E9DBDC /* Models */,
+				0036F85E2B67F0D400E9DBDC /* Modules */,
+				0036F85C2B67F0C800E9DBDC /* Network */,
+				0036F8612B67F10400E9DBDC /* UI */,
 				0036F8322B67F01F00E9DBDC /* Main.storyboard */,
 				0036F8352B67F02000E9DBDC /* Assets.xcassets */,
 				0036F8372B67F02000E9DBDC /* LaunchScreen.storyboard */,
@@ -125,6 +128,67 @@
 				0036F84F2B67F02000E9DBDC /* ImageGalleryAppUITestsLaunchTests.swift */,
 			);
 			path = ImageGalleryAppUITests;
+			sourceTree = "<group>";
+		};
+		0036F85C2B67F0C800E9DBDC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0036F85D2B67F0CF00E9DBDC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0036F85E2B67F0D400E9DBDC /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0036F8622B67F13000E9DBDC /* ImageGallery */,
+				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
+				0036F8632B67F13700E9DBDC /* ImageDetails */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0036F85F2B67F0E000E9DBDC /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0036F82C2B67F01F00E9DBDC /* AppDelegate.swift */,
+				0036F82E2B67F01F00E9DBDC /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0036F8602B67F0F200E9DBDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0036F8612B67F10400E9DBDC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0036F8622B67F13000E9DBDC /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageGallery;
+			sourceTree = "<group>";
+		};
+		0036F8632B67F13700E9DBDC /* ImageDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
