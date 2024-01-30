@@ -24,6 +24,12 @@
 		0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8712B68633A00E9DBDC /* URLRequestBuilder.swift */; };
 		0036F8782B68682200E9DBDC /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8772B68682200E9DBDC /* Photo.swift */; };
 		0036F87B2B68690200E9DBDC /* ListPhotosHTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87A2B68690200E9DBDC /* ListPhotosHTTPRequest.swift */; };
+		0036F87E2B690AD800E9DBDC /* ImageGalleryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */; };
+		0036F8802B690B6300E9DBDC /* ImageGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */; };
+		0036F8832B69103700E9DBDC /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */; };
+		0036F8842B69103700E9DBDC /* ImageGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */; };
+		0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */; };
+		0036F8882B69120700E9DBDC /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8872B69120700E9DBDC /* ServiceAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +71,12 @@
 		0036F8712B68633A00E9DBDC /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		0036F8772B68682200E9DBDC /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0036F87A2B68690200E9DBDC /* ListPhotosHTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosHTTPRequest.swift; sourceTree = "<group>"; };
+		0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryAssembly.swift; sourceTree = "<group>"; };
+		0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryPresenter.swift; sourceTree = "<group>"; };
+		0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
+		0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGalleryViewController.xib; sourceTree = "<group>"; };
+		0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryRouter.swift; sourceTree = "<group>"; };
+		0036F8872B69120700E9DBDC /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				0036F86B2B685ED500E9DBDC /* ListPhotosService.swift */,
+				0036F8872B69120700E9DBDC /* ServiceAssembly.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -171,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				0036F8622B67F13000E9DBDC /* ImageGallery */,
-				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
 				0036F8632B67F13700E9DBDC /* ImageDetails */,
 			);
 			path = Modules;
@@ -198,6 +210,7 @@
 		0036F8612B67F10400E9DBDC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -205,6 +218,11 @@
 		0036F8622B67F13000E9DBDC /* ImageGallery */ = {
 			isa = PBXGroup;
 			children = (
+				0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */,
+				0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */,
+				0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */,
+				0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */,
+				0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */,
 			);
 			path = ImageGallery;
 			sourceTree = "<group>";
@@ -376,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0036F8392B67F02000E9DBDC /* LaunchScreen.storyboard in Resources */,
+				0036F8842B69103700E9DBDC /* ImageGalleryViewController.xib in Resources */,
 				0036F8362B67F02000E9DBDC /* Assets.xcassets in Resources */,
 				0036F8342B67F01F00E9DBDC /* Main.storyboard in Resources */,
 			);
@@ -402,15 +421,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0036F8832B69103700E9DBDC /* ImageGalleryViewController.swift in Sources */,
+				0036F8882B69120700E9DBDC /* ServiceAssembly.swift in Sources */,
 				0036F8652B67F39100E9DBDC /* HTTPRequestExecutor.swift in Sources */,
 				0036F8312B67F01F00E9DBDC /* ViewController.swift in Sources */,
 				0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */,
 				0036F8692B685E6600E9DBDC /* NetworkAssembly.swift in Sources */,
+				0036F87E2B690AD800E9DBDC /* ImageGalleryAssembly.swift in Sources */,
 				0036F87B2B68690200E9DBDC /* ListPhotosHTTPRequest.swift in Sources */,
 				0036F86E2B685F3700E9DBDC /* ListPhotosResponse.swift in Sources */,
+				0036F8802B690B6300E9DBDC /* ImageGalleryPresenter.swift in Sources */,
 				0036F86C2B685ED500E9DBDC /* ListPhotosService.swift in Sources */,
 				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
 				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
+				0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */,
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
 				0036F82F2B67F01F00E9DBDC /* SceneDelegate.swift in Sources */,
 			);
