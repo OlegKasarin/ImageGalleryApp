@@ -18,7 +18,7 @@ final class URLRequestBuilder: URLRequestBuilderProtocol {
         case invalidBodyPayload
     }
     
-    private let baseURLString = "https://api.unsplash.com/"
+    private let baseURLString = "https://api.unsplash.com"
     
     func buildThrows(request: HTTPRequest) throws -> URLRequest {
         do {
@@ -53,11 +53,28 @@ private extension URLRequestBuilder {
         
         components.path += request.path.rawValue
         
+        if let queryItems = buildQueryItems(request: request) {
+            components.queryItems = queryItems
+        }
+        
         guard let url = components.url else {
             throw URLRequestBuilderError.invalidURLParameters
         }
         
         return url
+    }
+    
+    func buildQueryItems(request: HTTPRequest) -> [URLQueryItem]? {
+        guard let variables = request.queryVariables else {
+            return nil
+        }
+        
+        var queryItems: [URLQueryItem] = []
+        for (key, value) in variables {
+            queryItems.append(URLQueryItem(name: key, value: value))
+        }
+        
+        return queryItems
     }
     
     func buildURLRequest(url: URL, request: HTTPRequest) throws -> URLRequest {

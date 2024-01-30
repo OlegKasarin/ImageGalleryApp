@@ -10,11 +10,16 @@ import Foundation
 struct Photo {
     let id: String
     let description: String
+    let thumbURL: String
 }
 
 extension Photo {
     init?(response: PhotoResponse) {
-        id = response.id
-        description = response.description
+        guard let id = response.id, let thumb = response.urls.thumb else {
+            return nil
+        }
+        self.id = id
+        description = response.description ?? ""
+        thumbURL = thumb
     }
 }

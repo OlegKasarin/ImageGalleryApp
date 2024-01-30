@@ -24,7 +24,7 @@ final class HTTPRequestExecutor {
 // MARK: - RequestExecutorProtocol
 
 extension HTTPRequestExecutor: RequestExecutorProtocol {
-    func execute<T: Codable>(request: HTTPRequest) async throws -> T {
+    func execute<T: Codable>(request: HTTPRequest) async throws -> [T] {
         let urlRequest = try builder.buildThrows(request: request)
         
         let payload = try await fetchData(request: urlRequest)
@@ -32,7 +32,11 @@ extension HTTPRequestExecutor: RequestExecutorProtocol {
             throw "Error: bad response"
         }
         
-        return try JSONDecoder().decode(T.self, from: payload.data)
+        guard let objects = try? JSONDecoder().decode([T].self, from: payload.data) else {
+            throw "Error: parsing error"
+        }
+        
+        return objects
     }
     
     private func fetchData(request: URLRequest) async throws -> URLResponsePayload {

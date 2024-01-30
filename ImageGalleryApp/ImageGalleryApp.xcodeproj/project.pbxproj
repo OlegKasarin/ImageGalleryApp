@@ -27,9 +27,9 @@
 		0036F87E2B690AD800E9DBDC /* ImageGalleryAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */; };
 		0036F8802B690B6300E9DBDC /* ImageGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */; };
 		0036F8832B69103700E9DBDC /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */; };
-		0036F8842B69103700E9DBDC /* ImageGalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */; };
 		0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */; };
 		0036F8882B69120700E9DBDC /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8872B69120700E9DBDC /* ServiceAssembly.swift */; };
+		0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,9 +74,9 @@
 		0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryAssembly.swift; sourceTree = "<group>"; };
 		0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryPresenter.swift; sourceTree = "<group>"; };
 		0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
-		0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGalleryViewController.xib; sourceTree = "<group>"; };
 		0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryRouter.swift; sourceTree = "<group>"; };
 		0036F8872B69120700E9DBDC /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
+		0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,11 +218,11 @@
 		0036F8622B67F13000E9DBDC /* ImageGallery */ = {
 			isa = PBXGroup;
 			children = (
+				0036F88B2B69175600E9DBDC /* Cell */,
 				0036F87D2B690AD800E9DBDC /* ImageGalleryAssembly.swift */,
 				0036F87F2B690B6300E9DBDC /* ImageGalleryPresenter.swift */,
 				0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */,
 				0036F8812B69103700E9DBDC /* ImageGalleryViewController.swift */,
-				0036F8822B69103700E9DBDC /* ImageGalleryViewController.xib */,
 			);
 			path = ImageGallery;
 			sourceTree = "<group>";
@@ -287,6 +287,14 @@
 				0036F8642B67F39100E9DBDC /* HTTPRequestExecutor.swift */,
 			);
 			path = RequestExecutor;
+			sourceTree = "<group>";
+		};
+		0036F88B2B69175600E9DBDC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,7 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0036F8392B67F02000E9DBDC /* LaunchScreen.storyboard in Resources */,
-				0036F8842B69103700E9DBDC /* ImageGalleryViewController.xib in Resources */,
 				0036F8362B67F02000E9DBDC /* Assets.xcassets in Resources */,
 				0036F8342B67F01F00E9DBDC /* Main.storyboard in Resources */,
 			);
@@ -432,6 +439,7 @@
 				0036F86E2B685F3700E9DBDC /* ListPhotosResponse.swift in Sources */,
 				0036F8802B690B6300E9DBDC /* ImageGalleryPresenter.swift in Sources */,
 				0036F86C2B685ED500E9DBDC /* ListPhotosService.swift in Sources */,
+				0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */,
 				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
 				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
 				0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */,

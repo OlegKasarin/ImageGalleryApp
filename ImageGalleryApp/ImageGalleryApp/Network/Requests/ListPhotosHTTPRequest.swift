@@ -8,6 +8,11 @@
 import Foundation
 
 struct ListPhotosHTTPRequest: HTTPRequest {
+    let page: Int
+    let perPage: Int
+    
+    // MARK: - HTTPRequest
+    
     var method: HTTPRequestMethod {
         .get
     }
@@ -22,6 +27,13 @@ struct ListPhotosHTTPRequest: HTTPRequest {
     
     var isAuthorized: Bool {
         true
+    }
+    
+    var queryVariables: HTTPURLVariables? {
+        var query: HTTPURLVariables = [:]
+        query["page"] = String(page)
+        query["per_page"] = String(perPage)
+        return query
     }
     
     var headers: HTTPHeaders? {

@@ -9,6 +9,7 @@ import Foundation
 
 typealias HTTPBody = [String: Any]
 typealias HTTPHeaders = [String: String]
+typealias HTTPURLVariables = [String: String]
 
 struct NetworkAPI {
     static var clientId = "R9EtWSrcvPtQuKkToX2c3ijAER9tIGzSg3_1kvbwYOE"
@@ -31,6 +32,7 @@ protocol HTTPRequest {
     var baseURL: String { get }
     var path: HTTPPath { get }
     var isAuthorized: Bool { get }
+    var queryVariables: HTTPURLVariables? { get }
     var headers: HTTPHeaders? { get }
     var bodyPayload: HTTPBody? { get }
 }
