@@ -29,6 +29,7 @@ final class ImageGalleryCollectionViewCell: UICollectionViewCell {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(systemName: "heart")?.withTintColor(.red)
+        view.kf.indicatorType = .activity
         return view
     }()
     

@@ -9,6 +9,7 @@ import Foundation
 
 protocol ImageGalleryPresenterProtocol {
     func didTriggerViewLoad()
+    func didTriggerReachEndOfList()
 }
 
 final class ImageGalleryPresenter {
@@ -36,12 +37,18 @@ extension ImageGalleryPresenter: ImageGalleryPresenterProtocol {
     func didTriggerViewLoad() {
         fetch()
     }
+    
+    func didTriggerReachEndOfList() {
+        fetchNext()
+    }
 }
 
 // MARK: - Private
 
 private extension ImageGalleryPresenter {
     func fetch() {
+        controller?.showCenterActivityIndicator()
+        
         Task {
             let photos = try await listPhotosService.fetch()
             let fetchedItems = photos.map {
@@ -61,5 +68,31 @@ private extension ImageGalleryPresenter {
     
     @MainActor func refresh() {
         controller?.refresh(items: items)
+        controller?.hideCenterActivityIndicator()
+    }
+    
+    func fetchNext() {
+        controller?.showBottomActivityIndicator()
+        
+        Task {
+            let photos = try await listPhotosService.fetch()
+            let fetchedItems = photos.map {
+                ImageGalleryCellItem(
+                    title: $0.description,
+                    description: $0.description,
+                    imageURL: $0.thumbURL,
+                    isFavorite: true
+                )
+            }
+            
+            items.append(contentsOf: fetchedItems)
+            
+            await append(items: fetchedItems)
+        }
+    }
+    
+    @MainActor func append(items: [ImageGalleryCellItem]) {
+        controller?.append(items: items)
+        controller?.hideBottomActivityIndicator()
     }
 }

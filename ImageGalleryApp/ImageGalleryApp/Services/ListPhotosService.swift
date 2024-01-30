@@ -13,9 +13,14 @@ protocol ListPhotosServiceProtocol {
 }
 
 final class ListPhotosService {
-    private let perPageCount = 30
+    static private let perPageCount = 30
+    static private let initialPage = 1
     
+    private var isFirstCall = true
     private(set) var isLoading = false
+    private var currentPage = initialPage
+    
+    private var fetchTask: Task<[Photo], Error>?
     
     private let executor: RequestExecutorProtocol
     
@@ -28,13 +33,43 @@ final class ListPhotosService {
 
 extension ListPhotosService: ListPhotosServiceProtocol {
     func fetch() async throws -> [Photo] {
-        let request = ListPhotosHTTPRequest(page: 1, perPage: perPageCount)
-        
-        let response: [PhotoResponse] = try await executor.execute(request: request)
-        let photos = response.compactMap {
-            Photo(response: $0)
+        if isLoading {
+            fetchTask?.cancel()
         }
         
-        return photos
+        isLoading = true
+        
+        if isFirstCall {
+            isFirstCall = false
+            return try await fetch(page: ListPhotosService.initialPage)
+        } else {
+            return try await fetch(page: currentPage)
+        }
+    }
+    
+    func fetch(page: Int) async throws -> [Photo] {
+        fetchTask = Task { () -> [Photo] in
+            let request = ListPhotosHTTPRequest(
+                page: page,
+                perPage: ListPhotosService.perPageCount
+            )
+            let response: [PhotoResponse] = try await executor.execute(request: request)
+            
+            let photos = response.compactMap {
+                Photo(response: $0)
+            }
+            
+            return photos
+        }
+        
+        currentPage += 1
+        do {
+            let result = try await fetchTask?.value ?? []
+            isLoading = false
+            return result
+        } catch {
+            isLoading = false
+            throw error
+        }
     }
 }

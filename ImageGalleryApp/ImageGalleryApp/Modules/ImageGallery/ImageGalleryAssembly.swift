@@ -23,6 +23,6 @@ struct ImageGalleryAssembly {
         
         controller.presenter = presenter
         
-        return controller
+        return UINavigationController(rootViewController: controller)
     }
 }
