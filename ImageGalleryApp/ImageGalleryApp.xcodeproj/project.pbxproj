@@ -30,6 +30,8 @@
 		0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */; };
 		0036F8882B69120700E9DBDC /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8872B69120700E9DBDC /* ServiceAssembly.swift */; };
 		0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */; };
+		0036F88D2B697DCD00E9DBDC /* BrandedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */; };
+		0036F8902B697E5F00E9DBDC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0036F88F2B697E5F00E9DBDC /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		0036F8852B69108D00E9DBDC /* ImageGalleryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryRouter.swift; sourceTree = "<group>"; };
 		0036F8872B69120700E9DBDC /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
 		0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandedImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0036F8902B697E5F00E9DBDC /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
+				0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -313,6 +318,9 @@
 			dependencies = (
 			);
 			name = ImageGalleryApp;
+			packageProductDependencies = (
+				0036F88F2B697E5F00E9DBDC /* Kingfisher */,
+			);
 			productName = ImageGalleryApp;
 			productReference = 0036F8292B67F01F00E9DBDC /* ImageGalleryApp.app */;
 			productType = "com.apple.product-type.application";
@@ -385,6 +393,9 @@
 				Base,
 			);
 			mainGroup = 0036F8202B67F01F00E9DBDC;
+			packageReferences = (
+				0036F88E2B697E5F00E9DBDC /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 0036F82A2B67F01F00E9DBDC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -441,6 +452,7 @@
 				0036F86C2B685ED500E9DBDC /* ListPhotosService.swift in Sources */,
 				0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */,
 				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
+				0036F88D2B697DCD00E9DBDC /* BrandedImageView.swift in Sources */,
 				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
 				0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */,
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
@@ -793,6 +805,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0036F88E2B697E5F00E9DBDC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0036F88F2B697E5F00E9DBDC /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0036F88E2B697E5F00E9DBDC /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0036F8212B67F01F00E9DBDC /* Project object */;
 }

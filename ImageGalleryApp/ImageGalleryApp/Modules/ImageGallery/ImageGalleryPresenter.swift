@@ -17,6 +17,8 @@ final class ImageGalleryPresenter {
     private let router: ImageGalleryRouterProtocol
     private let listPhotosService: ListPhotosServiceProtocol
     
+    private var items: [ImageGalleryCellItem] = []
+    
     init(
         controller: ImageGalleryViewControllerProtocol,
         router: ImageGalleryRouterProtocol,
@@ -32,6 +34,32 @@ final class ImageGalleryPresenter {
 
 extension ImageGalleryPresenter: ImageGalleryPresenterProtocol {
     func didTriggerViewLoad() {
-        
+        fetch()
+    }
+}
+
+// MARK: - Private
+
+private extension ImageGalleryPresenter {
+    func fetch() {
+        Task {
+            let photos = try await listPhotosService.fetch()
+            let fetchedItems = photos.map {
+                ImageGalleryCellItem(
+                    title: $0.description,
+                    description: $0.description,
+                    imageURL: $0.thumbURL,
+                    isFavorite: true
+                )
+            }
+            
+            items.append(contentsOf: fetchedItems)
+            
+            await refresh()
+        }
+    }
+    
+    @MainActor func refresh() {
+        controller?.refresh(items: items)
     }
 }
