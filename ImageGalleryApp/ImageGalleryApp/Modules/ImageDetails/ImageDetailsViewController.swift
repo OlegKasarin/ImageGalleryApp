@@ -57,6 +57,17 @@ final class ImageDetailsViewController: UIViewController {
         
         self.selectedIndex = nil
     }
+    
+    override func viewWillTransition(
+        to size: CGSize,
+        with coordinator: UIViewControllerTransitionCoordinator
+    ) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            collectionView.collectionViewLayout.invalidateLayout()
+        })
+    }
 }
 
 // MARK: - ImageDetailsViewControllerProtocol

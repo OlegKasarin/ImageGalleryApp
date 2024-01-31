@@ -21,19 +21,10 @@ protocol ImageGalleryViewControllerProtocol: AnyObject {
 }
 
 final class ImageGalleryViewController: UIViewController {
-    private let minimumLineSpacing: CGFloat = 10
-    private let cellHeight: CGFloat = 200
-    private let sectionInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    
     var presenter: ImageGalleryPresenterProtocol?
     
     private lazy var collectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = minimumLineSpacing
-        flowLayout.sectionInset = sectionInsets
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -60,6 +51,18 @@ final class ImageGalleryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.didTriggerViewWillAppear()
+    }
+    
+    override func viewWillTransition(
+        to size: CGSize,
+        with coordinator: UIViewControllerTransitionCoordinator
+    ) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            setupCollectionLayout()
+            collectionView.collectionViewLayout.invalidateLayout()
+        })
     }
 }
 
@@ -155,21 +158,6 @@ extension ImageGalleryViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         presenter?.didTriggerSelectItem(index: indexPath.row)
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension ImageGalleryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAt indexPath: IndexPath
-    ) -> CGSize {
-        CGSize(
-            width: collectionView.contentSize.width / 2 - sectionInsets.left - sectionInsets.right,
-            height: cellHeight
-        )
     }
 }
 
