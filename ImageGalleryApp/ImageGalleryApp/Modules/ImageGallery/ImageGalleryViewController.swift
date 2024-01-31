@@ -56,6 +56,11 @@ final class ImageGalleryViewController: UIViewController {
         setup()
         presenter?.didTriggerViewLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.didTriggerViewWillAppear()
+    }
 }
 
 // MARK: - ImageGalleryViewControllerProtocol

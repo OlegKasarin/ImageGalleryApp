@@ -7,24 +7,51 @@
 
 import UIKit
 
-protocol ImageDetailsViewControllerProtocol {
-    func setup(items: [])
+protocol ImageDetailsViewControllerProtocol: AnyObject {
+    func setup(items: [ImageGalleryCellItem])
+    func setup(selectedItem: Int)
+    func refresh()
 }
 
 final class ImageDetailsViewController: UIViewController {
-
+    var presenter: ImageDetailsPresenterProtocol?
+    
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.dataSource = self
-//            collectionView.delegate = self
+            collectionView.delegate = self
             collectionView.isPagingEnabled = true
+            
+            let nib = UINib(nibName: ImageDetailsCollectionViewCell.nibName, bundle: nil)
+            let id = ImageDetailsCollectionViewCell.cellID
+            collectionView.register(nib, forCellWithReuseIdentifier: id)
         }
     }
     
+    private var items: [ImageGalleryCellItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Image Details"
+        presenter?.didTriggerViewLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.didTriggerViewWillAppear()
+    }
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - ImageDetailsViewControllerProtocol
+
+extension ImageDetailsViewController: ImageDetailsViewControllerProtocol {
+    func setup(items: [ImageGalleryCellItem]) {
+        self.items = items
+    }
+    
+    func setup(selectedItem: Int) {
+        )
+        collectionView.reloadData()
     }
 }
 
@@ -43,14 +70,28 @@ extension ImageDetailsViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ImageGalleryCollectionViewCell.cellID,
+            withReuseIdentifier: ImageDetailsCollectionViewCell.cellID,
             for: indexPath
         )
 
-        if let cardCell = cell as? ImageGalleryCollectionViewCell {
-            cardCell.refresh(item: items[indexPath.row])
+        if let viewCell = cell as? ImageDetailsCollectionViewCell {
+            viewCell.refresh(item: items[indexPath.row]) { [weak self] id, isFavorite in
+                self?.presenter?.didTriggerFavorite(id: id, isFavorite: isFavorite)
+            }
         }
 
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension ImageDetailsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        collectionView.frame.size
     }
 }

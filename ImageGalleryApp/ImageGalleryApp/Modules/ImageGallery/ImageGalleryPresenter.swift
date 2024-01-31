@@ -9,6 +9,7 @@ import Foundation
 
 protocol ImageGalleryPresenterProtocol {
     func didTriggerViewLoad()
+    func didTriggerViewWillAppear()
     func didTriggerReachEndOfList()
     func didTriggerSelectItem(index: Int)
 }
@@ -39,6 +40,10 @@ extension ImageGalleryPresenter: ImageGalleryPresenterProtocol {
         fetch()
     }
     
+    func didTriggerViewWillAppear() {
+        controller?.refresh(items: items)
+    }
+    
     func didTriggerReachEndOfList() {
         fetchNext()
     }
@@ -59,12 +64,7 @@ private extension ImageGalleryPresenter {
             do {
                 let photos = try await listPhotosService.fetch()
                 let fetchedItems = photos.map {
-                    ImageGalleryCellItem(
-                        title: $0.description,
-                        description: $0.description,
-                        imageURL: $0.thumbURL,
-                        isFavorite: true
-                    )
+                    ImageGalleryCellItem(photo: $0)
                 }
                 
                 items.append(contentsOf: fetchedItems)
@@ -92,12 +92,7 @@ private extension ImageGalleryPresenter {
             do {
                 let photos = try await listPhotosService.fetch()
                 let fetchedItems = photos.map {
-                    ImageGalleryCellItem(
-                        title: $0.description,
-                        description: $0.description,
-                        imageURL: $0.thumbURL,
-                        isFavorite: true
-                    )
+                    ImageGalleryCellItem(photo: $0)
                 }
                 
                 items.append(contentsOf: fetchedItems)

@@ -12,9 +12,14 @@ struct ImageDetailsAssembly {
     static func imageDetailsViewController(
         input: ImageDetailsInput
     ) -> UIViewController {
-        let controller = UIViewController()
+        let controller = ImageDetailsViewController()
         
-        let presenter = ImageDetailsPresenter(input: input)
+        let presenter = ImageDetailsPresenter(
+            controller: controller,
+            input: input
+        )
+        
+        controller.presenter = presenter
         
         return controller
     }

@@ -7,9 +7,36 @@
 
 import Foundation
 
-struct ImageGalleryCellItem {
-    let title: String
+final class ImageGalleryCellItem {
+    let id: String
     let description: String
-    let imageURL: String
-    let isFavorite: Bool
+    let imageThumbURL: String
+    let imageRegularURL: String?
+    var isFavorite: Bool
+    
+    init(
+        id: String,
+        description: String,
+        imageThumbURL: String,
+        imageRegularURL: String?,
+        isFavorite: Bool
+    ) {
+        self.id = id
+        self.description = description
+        self.imageThumbURL = imageThumbURL
+        self.imageRegularURL = imageRegularURL
+        self.isFavorite = isFavorite
+    }
+}
+
+extension ImageGalleryCellItem {
+    convenience init(photo: Photo) {
+        self.init(
+            id: photo.id,
+            description: photo.description,
+            imageThumbURL: photo.thumbURL,
+            imageRegularURL: photo.regularURL,
+            isFavorite: false
+        )
+    }
 }

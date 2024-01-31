@@ -15,4 +15,5 @@ struct PhotoResponse: Codable {
 
 struct PhotoURLsResponse: Codable {
     let thumb: String?
+    let regular: String?
 }

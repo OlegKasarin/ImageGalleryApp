@@ -11,6 +11,7 @@ struct Photo {
     let id: String
     let description: String
     let thumbURL: String
+    let regularURL: String?
 }
 
 extension Photo {
@@ -21,5 +22,6 @@ extension Photo {
         self.id = id
         description = response.description ?? ""
         thumbURL = thumb
+        regularURL = response.urls.regular
     }
 }

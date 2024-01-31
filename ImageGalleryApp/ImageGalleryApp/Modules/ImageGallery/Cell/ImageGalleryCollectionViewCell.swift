@@ -9,20 +9,22 @@ import UIKit
 
 final class ImageGalleryCollectionViewCell: UICollectionViewCell {
     static var cellID = "ImageGalleryCollectionViewCell"
+    private let favoriteImageSize: CGFloat = 24
     
     lazy var imageView: BrandedImageView = {
         let view = BrandedImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
+        view.kf.indicatorType = .activity
         return view
     }()
     
     private let favoriteImageView: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(systemName: "heart")?.withTintColor(.red)
-        view.kf.indicatorType = .activity
+        view.image = UIImage(systemName: "heart.fill")?.withTintColor(.red, renderingMode: .alwaysOriginal)
         return view
     }()
     
@@ -39,10 +41,11 @@ final class ImageGalleryCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
+        favoriteImageView.isHidden = true
     }
     
     func refresh(item: ImageGalleryCellItem) {
-        imageView.load(imageURL: item.imageURL, placeholder: nil)
+        imageView.load(imageURL: item.imageThumbURL, placeholder: nil)
         favoriteImageView.isHidden = !item.isFavorite
     }
 }
@@ -57,6 +60,10 @@ private extension ImageGalleryCollectionViewCell {
         imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        addSubview(favoriteImageView)
+        self.addSubview(favoriteImageView)
+        favoriteImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        favoriteImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        favoriteImageView.heightAnchor.constraint(equalToConstant: favoriteImageSize).isActive = true
+        favoriteImageView.widthAnchor.constraint(equalToConstant: favoriteImageSize).isActive = true
     }
 }

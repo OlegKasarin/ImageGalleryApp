@@ -8,7 +8,9 @@
 import Foundation
 
 protocol ImageDetailsPresenterProtocol {
-    
+    func didTriggerViewLoad()
+    func didTriggerViewWillAppear()
+    func didTriggerFavorite(id: String, isFavorite: Bool)
 }
 
 struct ImageDetailsInput {
@@ -17,15 +19,44 @@ struct ImageDetailsInput {
 }
 
 final class ImageDetailsPresenter {
-    private let input: ImageDetailsInput
+    weak var controller: ImageDetailsViewControllerProtocol?
     
-    init(input: ImageDetailsInput) {
-        self.input = input
+    private var items: [ImageGalleryCellItem]
+    private let selectedItem: Int
+    
+    init(
+        controller: ImageDetailsViewControllerProtocol,
+        input: ImageDetailsInput
+    ) {
+        self.controller = controller
+        self.items = input.items
+        self.selectedItem = input.selectedItem
     }
 }
 
 // MARK: - ImageDetailsPresenterProtocol
 
 extension ImageDetailsPresenter: ImageDetailsPresenterProtocol {
+    func didTriggerViewLoad() {
+        controller?.setup(items: items)
+    }
     
+    func didTriggerViewWillAppear() {
+        controller?.setup(selectedItem: selectedItem)
+    }
+    
+    func didTriggerFavorite(id: String, isFavorite: Bool) {
+        guard var item = items.first(where: { $0.id == id }) else {
+            return
+        }
+        
+        item.isFavorite = isFavorite
+        controller?.setup(items: items)
+        
+        if isFavorite {
+            // save id to favorites
+        } else {
+            // remove id from favorites
+        }
+    }
 }
