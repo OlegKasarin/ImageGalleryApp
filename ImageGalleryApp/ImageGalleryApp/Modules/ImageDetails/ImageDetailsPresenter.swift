@@ -9,7 +9,7 @@ import Foundation
 
 protocol ImageDetailsPresenterProtocol {
     func didTriggerViewLoad()
-    func didTriggerViewWillAppear()
+    func didTriggerViewIsAppearing()
     func didTriggerFavorite(id: String, isFavorite: Bool)
 }
 
@@ -41,12 +41,12 @@ extension ImageDetailsPresenter: ImageDetailsPresenterProtocol {
         controller?.setup(items: items)
     }
     
-    func didTriggerViewWillAppear() {
-        controller?.setup(selectedItem: selectedItem)
+    func didTriggerViewIsAppearing() {
+        controller?.setup(selectedIndex: selectedItem)
     }
     
     func didTriggerFavorite(id: String, isFavorite: Bool) {
-        guard var item = items.first(where: { $0.id == id }) else {
+        guard let item = items.first(where: { $0.id == id }) else {
             return
         }
         

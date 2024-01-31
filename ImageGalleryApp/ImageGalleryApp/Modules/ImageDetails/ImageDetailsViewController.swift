@@ -9,7 +9,7 @@ import UIKit
 
 protocol ImageDetailsViewControllerProtocol: AnyObject {
     func setup(items: [ImageGalleryCellItem])
-    func setup(selectedItem: Int)
+    func setup(selectedIndex: Int)
     func refresh()
 }
 
@@ -29,6 +29,7 @@ final class ImageDetailsViewController: UIViewController {
     }
     
     private var items: [ImageGalleryCellItem] = []
+    private var selectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +37,25 @@ final class ImageDetailsViewController: UIViewController {
         presenter?.didTriggerViewLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter?.didTriggerViewWillAppear()
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        presenter?.didTriggerViewIsAppearing()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        guard let selectedIndex = selectedIndex, collectionView.frame.width != .zero else {
+            return
+        }
+        
+        let offset = selectedIndex * Int(collectionView.frame.width)
+        collectionView.setContentOffset(
+            CGPoint(x: offset, y: .zero),
+            animated: false
+        )
+        
+        self.selectedIndex = nil
     }
 }
 
@@ -49,8 +66,11 @@ extension ImageDetailsViewController: ImageDetailsViewControllerProtocol {
         self.items = items
     }
     
-    func setup(selectedItem: Int) {
-        )
+    func setup(selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
+    }
+    
+    func refresh() {
         collectionView.reloadData()
     }
 }
