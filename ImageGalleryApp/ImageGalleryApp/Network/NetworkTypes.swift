@@ -36,3 +36,25 @@ protocol HTTPRequest {
     var headers: HTTPHeaders? { get }
     var bodyPayload: HTTPBody? { get }
 }
+
+enum NetworkError: Error {
+    case offline
+    case badResponse
+    case parsingError
+    case unknown
+    
+    var description: String {
+        switch self {
+        case .offline:
+            "Offline"
+        case .badResponse:
+            "Error: bad response"
+        case .parsingError:
+            "Error: parsing error"
+        case .unknown:
+            "Generic Error"
+        }
+    }
+}
+
+ extension String: Error { }

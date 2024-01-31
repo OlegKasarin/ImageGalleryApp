@@ -9,6 +9,9 @@ import Foundation
 
 struct ServiceAssembly {
     static var listPhotosService: ListPhotosServiceProtocol {
-        ListPhotosService(executor: NetworkAssembly.requestExecutor)
+        ListPhotosService(
+            executor: NetworkAssembly.requestExecutor,
+            storageManager: PersistanceStorageManager()
+        )
     }
 }

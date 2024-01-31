@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F82C2B67F01F00E9DBDC /* AppDelegate.swift */; };
 		0036F82F2B67F01F00E9DBDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F82E2B67F01F00E9DBDC /* SceneDelegate.swift */; };
-		0036F8312B67F01F00E9DBDC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8302B67F01F00E9DBDC /* ViewController.swift */; };
 		0036F8342B67F01F00E9DBDC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0036F8322B67F01F00E9DBDC /* Main.storyboard */; };
 		0036F8362B67F02000E9DBDC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0036F8352B67F02000E9DBDC /* Assets.xcassets */; };
 		0036F8392B67F02000E9DBDC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0036F8372B67F02000E9DBDC /* LaunchScreen.storyboard */; };
@@ -40,6 +39,9 @@
 		0036F89D2B6A5EE900E9DBDC /* ImageDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0036F89B2B6A5EE900E9DBDC /* ImageDetailsCollectionViewCell.xib */; };
 		0036F8A02B6A5F9100E9DBDC /* ImageGalleryCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F89F2B6A5F9100E9DBDC /* ImageGalleryCellItem.swift */; };
 		0036F8A32B6A625500E9DBDC /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8A22B6A625500E9DBDC /* UIImage+Extensions.swift */; };
+		0036F8A62B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8A42B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodeld */; };
+		0036F8A82B6AA40800E9DBDC /* PersistenceStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8A72B6AA40800E9DBDC /* PersistenceStorageManager.swift */; };
+		0036F8AA2B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8A92B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +65,6 @@
 		0036F8292B67F01F00E9DBDC /* ImageGalleryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGalleryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0036F82C2B67F01F00E9DBDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0036F82E2B67F01F00E9DBDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0036F8302B67F01F00E9DBDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0036F8332B67F01F00E9DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0036F8352B67F02000E9DBDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0036F8382B67F02000E9DBDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -96,6 +97,9 @@
 		0036F89B2B6A5EE900E9DBDC /* ImageDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		0036F89F2B6A5F9100E9DBDC /* ImageGalleryCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCellItem.swift; sourceTree = "<group>"; };
 		0036F8A22B6A625500E9DBDC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		0036F8A52B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoModelStorage.xcdatamodel; sourceTree = "<group>"; };
+		0036F8A72B6AA40800E9DBDC /* PersistenceStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceStorageManager.swift; sourceTree = "<group>"; };
+		0036F8A92B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,8 +236,8 @@
 		0036F8612B67F10400E9DBDC /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0036F8302B67F01F00E9DBDC /* ViewController.swift */,
 				0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */,
+				0036F8A92B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -297,6 +301,8 @@
 		0036F8742B6863CF00E9DBDC /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				0036F8A42B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodeld */,
+				0036F8A72B6AA40800E9DBDC /* PersistenceStorageManager.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -494,11 +500,11 @@
 				0036F8A02B6A5F9100E9DBDC /* ImageGalleryCellItem.swift in Sources */,
 				0036F8652B67F39100E9DBDC /* HTTPRequestExecutor.swift in Sources */,
 				0036F8922B69C11600E9DBDC /* ImageDetailsAssembly.swift in Sources */,
-				0036F8312B67F01F00E9DBDC /* ViewController.swift in Sources */,
 				0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */,
 				0036F8692B685E6600E9DBDC /* NetworkAssembly.swift in Sources */,
 				0036F87E2B690AD800E9DBDC /* ImageGalleryAssembly.swift in Sources */,
 				0036F87B2B68690200E9DBDC /* ListPhotosHTTPRequest.swift in Sources */,
+				0036F8AA2B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift in Sources */,
 				0036F8972B6A5DD200E9DBDC /* ImageDetailsViewController.swift in Sources */,
 				0036F86E2B685F3700E9DBDC /* ListPhotosResponse.swift in Sources */,
 				0036F8802B690B6300E9DBDC /* ImageGalleryPresenter.swift in Sources */,
@@ -507,8 +513,10 @@
 				0036F8A32B6A625500E9DBDC /* UIImage+Extensions.swift in Sources */,
 				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
 				0036F88D2B697DCD00E9DBDC /* BrandedImageView.swift in Sources */,
+				0036F8A62B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodeld in Sources */,
 				0036F8942B69C2D200E9DBDC /* ImageDetailsPresenter.swift in Sources */,
 				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
+				0036F8A82B6AA40800E9DBDC /* PersistenceStorageManager.swift in Sources */,
 				0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */,
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
 				0036F82F2B67F01F00E9DBDC /* SceneDelegate.swift in Sources */,
@@ -880,6 +888,19 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		0036F8A42B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0036F8A52B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodel */,
+			);
+			currentVersion = 0036F8A52B6AA22A00E9DBDC /* PhotoModelStorage.xcdatamodel */;
+			path = PhotoModelStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0036F8212B67F01F00E9DBDC /* Project object */;
 }

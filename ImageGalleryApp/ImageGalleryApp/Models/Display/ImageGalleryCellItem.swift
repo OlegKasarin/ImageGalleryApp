@@ -36,7 +36,17 @@ extension ImageGalleryCellItem {
             description: photo.description,
             imageThumbURL: photo.thumbURL,
             imageRegularURL: photo.regularURL,
-            isFavorite: false
+            isFavorite: photo.isFavorite
+        )
+    }
+    
+    var photo: Photo {
+        Photo(
+            id: id, 
+            description: description,
+            thumbURL: imageThumbURL,
+            regularURL: imageRegularURL,
+            isFavorite: isFavorite
         )
     }
 }

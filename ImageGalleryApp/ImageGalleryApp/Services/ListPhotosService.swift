@@ -20,11 +20,23 @@ final class ListPhotosService {
     private var currentPage = 1
     
     private var fetchTask: Task<[Photo], Error>?
+    private var favoritePhotos: Set<Photo> = []
     
     private let executor: RequestExecutorProtocol
+    private let storageManager: PersistanceStorageManagerProtocol
     
-    init(executor: RequestExecutorProtocol) {
+    init(
+        executor: RequestExecutorProtocol,
+        storageManager: PersistanceStorageManagerProtocol
+    ) {
         self.executor = executor
+        self.storageManager = storageManager
+        
+        do {
+            self.favoritePhotos = try storageManager.getPhotos()
+        } catch {
+            self.favoritePhotos = []
+        }
     }
 }
 
@@ -51,10 +63,16 @@ extension ListPhotosService: ListPhotosServiceProtocol {
                 page: page,
                 perPage: perPageCount
             )
-            let response: [PhotoResponse] = try await executor.execute(request: request)
+            let responses: [PhotoResponse] = try await executor.execute(request: request)
             
-            let photos = response.compactMap {
-                Photo(response: $0)
+            let photos: [Photo] = responses.compactMap { response -> Photo? in
+                guard let photo = Photo(response: response) else {
+                    return nil
+                }
+                
+                return favoritePhotos.contains(photo)
+                    ? photo.set(isFavorite: true)
+                    : photo
             }
             
             return photos
@@ -67,6 +85,19 @@ extension ListPhotosService: ListPhotosServiceProtocol {
             return result
         } catch {
             isLoading = false
+            return try handle(result: [], error: error)
+        }
+    }
+    
+    private func handle(result: [Photo], error: Error) throws -> [Photo] {
+        guard let networkError = error as? NetworkError else {
+            throw error
+        }
+        
+        switch networkError {
+        case .offline:
+            return Array(favoritePhotos)
+        case .badResponse, .parsingError, .unknown:
             throw error
         }
     }

@@ -16,7 +16,8 @@ struct ImageDetailsAssembly {
         
         let presenter = ImageDetailsPresenter(
             controller: controller,
-            input: input
+            input: input, 
+            storageManager: PersistanceStorageManager()
         )
         
         controller.presenter = presenter

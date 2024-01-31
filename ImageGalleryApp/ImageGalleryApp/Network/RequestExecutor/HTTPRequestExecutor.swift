@@ -28,18 +28,37 @@ extension HTTPRequestExecutor: RequestExecutorProtocol {
         let urlRequest = try builder.buildThrows(request: request)
         
         let payload = try await fetchData(request: urlRequest)
+        
         guard (payload.response as? HTTPURLResponse)?.statusCode == 200 else {
-            throw "Error: bad response"
+            throw NetworkError.badResponse
         }
         
         guard let objects = try? JSONDecoder().decode([T].self, from: payload.data) else {
-            throw "Error: parsing error"
+            throw NetworkError.parsingError
         }
         
         return objects
     }
     
     private func fetchData(request: URLRequest) async throws -> URLResponsePayload {
+        do {
+            return try await fetch(request: request)
+        } catch {
+            // Handle network error
+            switch (error as NSError).code {
+            case
+                NSURLErrorNotConnectedToInternet,
+                NSURLErrorNetworkConnectionLost,
+                NSURLErrorDataNotAllowed:
+                
+                throw NetworkError.offline
+            default:
+                throw NetworkError.unknown
+            }
+        }
+    }
+    
+    private func fetch(request: URLRequest) async throws -> URLResponsePayload {
         if #available(iOS 14.0.0, *) {
             return try await URLSession.shared.data(for: request)
         } else {
@@ -67,5 +86,3 @@ extension URLSession {
         }
     }
 }
-
-extension String: Error { }

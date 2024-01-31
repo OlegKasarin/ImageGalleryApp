@@ -179,6 +179,7 @@ private extension ImageGalleryViewController {
     func setup() {
         title = "List Photos"
         setupCollectionView()
+        setupCollectionLayout()
         addActivityIndicators()
     }
     
@@ -204,5 +205,57 @@ private extension ImageGalleryViewController {
         bottomIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomIndicatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         self.bottomActivityIndicatorView = bottomIndicatorView
+    }
+}
+
+// MARK: - Private
+
+private extension ImageGalleryViewController {
+    func setupCollectionLayout() {
+        collectionView.collectionViewLayout = CollectionViewLayoutBuilder.build(collectionLayout)
+    }
+    
+    // MARK: - Layout
+    
+    var isLandscape: Bool {
+        let isLandscape = traitCollection.verticalSizeClass == .compact
+        debugPrint("isLandscape:", isLandscape)
+        return isLandscape
+    }
+    
+    var collectionLayout: CollectionLayout {
+        isLandscape
+            ? padCollectionLayout
+            : phoneCollectionLayout
+    }
+    
+    var padCollectionLayout: CollectionLayout {
+        let countVisibleCells: CGFloat = 4.5
+        let minimumLineSpacing: CGFloat = 32
+        let padCellRatio: CGFloat = 3/4
+        let sectionInsets = UIEdgeInsets(top: 20, left: 32, bottom: 20, right: 32)
+        
+        return CollectionLayout(
+            cellRatio: padCellRatio,
+            visibleCountInRow: countVisibleCells,
+            minimumLineSpacing: minimumLineSpacing,
+            sectionInset: sectionInsets,
+            scrollDirection: .vertical
+        )
+    }
+    
+    var phoneCollectionLayout: CollectionLayout {
+        let countVisibleCells: CGFloat = 2
+        let minimumLineSpacing: CGFloat = 16
+        let phoneCellRation: CGFloat = 1
+        let sectionInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        return CollectionLayout(
+            cellRatio: phoneCellRation,
+            visibleCountInRow: countVisibleCells,
+            minimumLineSpacing: minimumLineSpacing,
+            sectionInset: sectionInsets,
+            scrollDirection: .vertical
+        )
     }
 }

@@ -74,11 +74,11 @@ final class ImageDetailsCollectionViewCell: UICollectionViewCell {
             delay: 0,
             options: [.curveEaseInOut],
             animations: {
-                self.favoriteImageView.transform = .init(scaleX: 0.95, y: 0.95)
+                self.favoriteImageView.transform = .init(scaleX: 1.5, y: 1.5)
             },
             completion: { _ in
                 UIView.animate(
-                    withDuration: 0.15,
+                    withDuration: 0.1,
                     delay: 0,
                     options: [],
                     animations: {
