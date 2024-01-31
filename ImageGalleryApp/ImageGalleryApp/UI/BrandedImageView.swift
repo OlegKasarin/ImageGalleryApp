@@ -19,7 +19,7 @@ final class BrandedImageView: UIImageView {
         let url = URL(string: imageURL)
         
         var options: KingfisherOptionsInfo = [
-            .processor(DownsamplingImageProcessor(size: bounds.size)),
+//            .processor(DownsamplingImageProcessor(size: bounds.size)),
             .scaleFactor(UIScreen.main.scale),
             .transition(.fade(0.5)),
             .cacheOriginalImage

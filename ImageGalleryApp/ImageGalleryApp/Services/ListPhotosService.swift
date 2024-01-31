@@ -34,7 +34,7 @@ final class ListPhotosService {
 extension ListPhotosService: ListPhotosServiceProtocol {
     func fetch() async throws -> [Photo] {
         if isLoading {
-            fetchTask?.cancel()
+            throw CancellationError()
         }
         
         isLoading = true

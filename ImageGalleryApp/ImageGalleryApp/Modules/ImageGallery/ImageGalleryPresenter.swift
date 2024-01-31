@@ -56,49 +56,65 @@ private extension ImageGalleryPresenter {
         controller?.showCenterActivityIndicator()
         
         Task {
-            let photos = try await listPhotosService.fetch()
-            let fetchedItems = photos.map {
-                ImageGalleryCellItem(
-                    title: $0.description,
-                    description: $0.description,
-                    imageURL: $0.thumbURL,
-                    isFavorite: true
-                )
+            do {
+                let photos = try await listPhotosService.fetch()
+                let fetchedItems = photos.map {
+                    ImageGalleryCellItem(
+                        title: $0.description,
+                        description: $0.description,
+                        imageURL: $0.thumbURL,
+                        isFavorite: true
+                    )
+                }
+                
+                items.append(contentsOf: fetchedItems)
+                
+                await MainActor.run {
+                    controller?.refresh(items: items)
+                    controller?.hideCenterActivityIndicator()
+                }
+            } catch {
+                await MainActor.run {
+                    controller?.hideCenterActivityIndicator()
+                }
             }
-            
-            items.append(contentsOf: fetchedItems)
-            
-            await refresh()
         }
-    }
-    
-    @MainActor func refresh() {
-        controller?.refresh(items: items)
-        controller?.hideCenterActivityIndicator()
     }
     
     func fetchNext() {
+        guard !listPhotosService.isLoading else {
+            return
+        }
+        
         controller?.showBottomActivityIndicator()
         
         Task {
-            let photos = try await listPhotosService.fetch()
-            let fetchedItems = photos.map {
-                ImageGalleryCellItem(
-                    title: $0.description,
-                    description: $0.description,
-                    imageURL: $0.thumbURL,
-                    isFavorite: true
-                )
+            do {
+                let photos = try await listPhotosService.fetch()
+                let fetchedItems = photos.map {
+                    ImageGalleryCellItem(
+                        title: $0.description,
+                        description: $0.description,
+                        imageURL: $0.thumbURL,
+                        isFavorite: true
+                    )
+                }
+                
+                items.append(contentsOf: fetchedItems)
+                
+                await MainActor.run {
+                    controller?.append(items: items)
+                    controller?.hideBottomActivityIndicator()
+                }
+            } catch {
+                guard !(error is CancellationError) else {
+                    return
+                }
+                
+                await MainActor.run {
+                    controller?.hideBottomActivityIndicator()
+                }
             }
-            
-            items.append(contentsOf: fetchedItems)
-            
-            await append(items: fetchedItems)
         }
-    }
-    
-    @MainActor func append(items: [ImageGalleryCellItem]) {
-        controller?.append(items: items)
-        controller?.hideBottomActivityIndicator()
     }
 }

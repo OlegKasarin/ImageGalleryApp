@@ -7,13 +7,6 @@
 
 import UIKit
 
-struct ImageGalleryCellItem {
-    let title: String
-    let description: String
-    let imageURL: String
-    let isFavorite: Bool
-}
-
 final class ImageGalleryCollectionViewCell: UICollectionViewCell {
     static var cellID = "ImageGalleryCollectionViewCell"
     
