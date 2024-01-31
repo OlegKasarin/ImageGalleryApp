@@ -67,7 +67,7 @@ private extension ImageGalleryPresenter {
                     ImageGalleryCellItem(photo: $0)
                 }
                 
-                items.append(contentsOf: fetchedItems)
+                items = fetchedItems
                 
                 await MainActor.run {
                     controller?.refresh(items: items)
@@ -98,7 +98,7 @@ private extension ImageGalleryPresenter {
                 items.append(contentsOf: fetchedItems)
                 
                 await MainActor.run {
-                    controller?.append(items: items)
+                    controller?.append(items: fetchedItems)
                     controller?.hideBottomActivityIndicator()
                 }
             } catch {
