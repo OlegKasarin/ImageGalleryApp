@@ -206,9 +206,7 @@ private extension ImageGalleryViewController {
     // MARK: - Layout
     
     var isLandscape: Bool {
-        let isLandscape = traitCollection.verticalSizeClass == .compact
-        debugPrint("isLandscape:", isLandscape)
-        return isLandscape
+        traitCollection.verticalSizeClass == .compact
     }
     
     var collectionLayout: CollectionLayout {

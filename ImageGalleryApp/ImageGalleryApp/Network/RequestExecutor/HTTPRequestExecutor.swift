@@ -10,7 +10,7 @@ import Foundation
 typealias URLResponsePayload = (data: Data, response: URLResponse)
 
 protocol RequestExecutorProtocol {
-    func execute<T: Codable>(request: HTTPRequest) async throws -> [T]
+    func execute<T: Decodable>(request: HTTPRequest) async throws -> [T]
 }
 
 final class HTTPRequestExecutor {
@@ -24,7 +24,7 @@ final class HTTPRequestExecutor {
 // MARK: - RequestExecutorProtocol
 
 extension HTTPRequestExecutor: RequestExecutorProtocol {
-    func execute<T: Codable>(request: HTTPRequest) async throws -> [T] {
+    func execute<T: Decodable>(request: HTTPRequest) async throws -> [T] {
         let urlRequest = try builder.buildThrows(request: request)
         
         let payload = try await fetchData(request: urlRequest)
