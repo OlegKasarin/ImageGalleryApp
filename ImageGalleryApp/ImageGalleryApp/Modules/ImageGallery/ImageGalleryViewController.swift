@@ -144,6 +144,13 @@ extension ImageGalleryViewController: UICollectionViewDelegate {
         
         imageCell.imageView.kf.cancelDownloadTask()
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        presenter?.didTriggerSelectItem(index: indexPath.row)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

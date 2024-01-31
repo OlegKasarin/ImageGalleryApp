@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ImageGalleryRouterProtocol {
-    
+    func pushToDetails(input: ImageDetailsInput)
 }
 
 final class ImageGalleryRouter {
@@ -22,5 +22,13 @@ final class ImageGalleryRouter {
 // MARK: - ImageGalleryRouterProtocol
 
 extension ImageGalleryRouter: ImageGalleryRouterProtocol {
-    
+    func pushToDetails(input: ImageDetailsInput) {
+        let detailsController = ImageDetailsAssembly.imageDetailsViewController(
+            input: input
+        )
+        viewController?.viewController.navigationController?.pushViewController(
+            detailsController,
+            animated: true
+        )
+    }
 }

@@ -10,6 +10,7 @@ import Foundation
 protocol ImageGalleryPresenterProtocol {
     func didTriggerViewLoad()
     func didTriggerReachEndOfList()
+    func didTriggerSelectItem(index: Int)
 }
 
 final class ImageGalleryPresenter {
@@ -40,6 +41,11 @@ extension ImageGalleryPresenter: ImageGalleryPresenterProtocol {
     
     func didTriggerReachEndOfList() {
         fetchNext()
+    }
+    
+    func didTriggerSelectItem(index: Int) {
+        let input = ImageDetailsInput(items: items, selectedItem: index)
+        router.pushToDetails(input: input)
     }
 }
 

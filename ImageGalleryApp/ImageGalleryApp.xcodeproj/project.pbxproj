@@ -32,6 +32,8 @@
 		0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */; };
 		0036F88D2B697DCD00E9DBDC /* BrandedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */; };
 		0036F8902B697E5F00E9DBDC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0036F88F2B697E5F00E9DBDC /* Kingfisher */; };
+		0036F8922B69C11600E9DBDC /* ImageDetailsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8912B69C11600E9DBDC /* ImageDetailsAssembly.swift */; };
+		0036F8942B69C2D200E9DBDC /* ImageDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8932B69C2D200E9DBDC /* ImageDetailsPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		0036F8872B69120700E9DBDC /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
 		0036F8892B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		0036F88C2B697DCD00E9DBDC /* BrandedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandedImageView.swift; sourceTree = "<group>"; };
+		0036F8912B69C11600E9DBDC /* ImageDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsAssembly.swift; sourceTree = "<group>"; };
+		0036F8932B69C2D200E9DBDC /* ImageDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailsPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +239,8 @@
 		0036F8632B67F13700E9DBDC /* ImageDetails */ = {
 			isa = PBXGroup;
 			children = (
+				0036F8912B69C11600E9DBDC /* ImageDetailsAssembly.swift */,
+				0036F8932B69C2D200E9DBDC /* ImageDetailsPresenter.swift */,
 			);
 			path = ImageDetails;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				0036F8832B69103700E9DBDC /* ImageGalleryViewController.swift in Sources */,
 				0036F8882B69120700E9DBDC /* ServiceAssembly.swift in Sources */,
 				0036F8652B67F39100E9DBDC /* HTTPRequestExecutor.swift in Sources */,
+				0036F8922B69C11600E9DBDC /* ImageDetailsAssembly.swift in Sources */,
 				0036F8312B67F01F00E9DBDC /* ViewController.swift in Sources */,
 				0036F8722B68633A00E9DBDC /* URLRequestBuilder.swift in Sources */,
 				0036F8692B685E6600E9DBDC /* NetworkAssembly.swift in Sources */,
@@ -453,6 +460,7 @@
 				0036F88A2B69175100E9DBDC /* ImageGalleryCollectionViewCell.swift in Sources */,
 				0036F8672B67F5D900E9DBDC /* NetworkTypes.swift in Sources */,
 				0036F88D2B697DCD00E9DBDC /* BrandedImageView.swift in Sources */,
+				0036F8942B69C2D200E9DBDC /* ImageDetailsPresenter.swift in Sources */,
 				0036F8782B68682200E9DBDC /* Photo.swift in Sources */,
 				0036F8862B69108D00E9DBDC /* ImageGalleryRouter.swift in Sources */,
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
