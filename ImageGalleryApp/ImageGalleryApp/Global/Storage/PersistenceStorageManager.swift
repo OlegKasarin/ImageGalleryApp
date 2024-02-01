@@ -9,29 +9,49 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol PersistanceStorageManagerProtocol {
-    func save(photo: Photo)
-    func getPhotos() throws -> Set<Photo>
-    func remove(photo: Photo) throws
+protocol PersistenceStorageManagerProtocol {
+    var context: NSManagedObjectContext { get }
+    
+    func save(object: NSManagedObject)
+    func retrieveObjects<T: NSManagedObject>(type: T.Type) throws -> [T]
+    func deleteObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate?) throws
 }
 
-final class PersistanceStorageManager {
-    private let context: NSManagedObjectContext
+final class PersistenceStorageManager {
+    private let containerName = "PhotoModelStorage"
     
-    required init() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("Unknown error")
-        }
-
-        self.context = appDelegate.persistentContainer.viewContext
+    static let shared: PersistenceStorageManagerProtocol = PersistenceStorageManager()
+    
+    private init() {}
+    
+    var context: NSManagedObjectContext {
+        self.persistentContainer.viewContext
     }
     
+    private lazy var persistentContainer: NSPersistentContainer = {
+        guard let modelURL = Bundle.main.url(forResource: containerName, withExtension: "momd") else {
+            fatalError("Unable to Find Data Model")
+        }
+        
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Unable to Load Data Model")
+        }
+        
+        let container = NSPersistentContainer(name: containerName, managedObjectModel: managedObjectModel)
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
     private func saveContext() {
-        if context.hasChanges {
+        if persistentContainer.viewContext.hasChanges {
             do {
-                try context.save()
+                try persistentContainer.viewContext.save()
             } catch {
-                context.rollback()
+                persistentContainer.viewContext.rollback()
             }
         }
     }
@@ -39,39 +59,31 @@ final class PersistanceStorageManager {
 
 // MARK: - PersistanceStorageManagerProtocol
 
-extension PersistanceStorageManager: PersistanceStorageManagerProtocol {
-    func save(photo: Photo) {
-        let photoModel = PhotoModel(context: context)
-        photoModel.photoID = photo.id
-        photoModel.photoDescription = photo.description
-        photoModel.photoThumbURL = photo.thumbURL
-        photoModel.photoRegularURL = photo.regularURL
-        photoModel.photoIsFavorite = photo.isFavorite
-        
+extension PersistenceStorageManager: PersistenceStorageManagerProtocol {
+    func save(object: NSManagedObject) {
         saveContext()
     }
     
-    func getPhotos() throws -> Set<Photo> {
-        let imageRequest: NSFetchRequest<PhotoModel> = PhotoModel.fetchRequest()
+    func retrieveObjects<T: NSManagedObject>(type: T.Type) throws -> [T] {
+        let request = NSFetchRequest<T>(entityName: String(describing: type))
         
         do {
-            let result = try context.fetch(imageRequest)
-            return Set(result.compactMap { Photo(model: $0) })
+            let result = try context.fetch(request)
+            return result
         } catch {
             throw "Core Data: Get - error while fetching models"
         }
     }
     
-    func remove(photo: Photo) throws {
-        let imageRequest: NSFetchRequest<PhotoModel> = PhotoModel.fetchRequest()
-        let predicate = NSPredicate(format: "photoID == %@", photo.id)
-        imageRequest.predicate = predicate
+    func deleteObject<T: NSManagedObject>(type: T.Type, predicate: NSPredicate? = nil) throws {
+        let request = NSFetchRequest<T>(entityName: String(describing: type))
+        request.predicate = predicate
         
         do {
-            let result = try context.fetch(imageRequest)
+            let result = try context.fetch(request)
             
-            if let model = result.first {
-                context.delete(model)
+            if let object = result.first {
+                context.delete(object)
                 saveContext()
             }
         } catch {

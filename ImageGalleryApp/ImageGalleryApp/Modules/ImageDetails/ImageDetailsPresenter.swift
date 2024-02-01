@@ -24,17 +24,17 @@ final class ImageDetailsPresenter {
     private var items: [ImageGalleryCellItem]
     private let selectedItem: Int
     
-    private let storageManager: PersistanceStorageManagerProtocol
+    private let storageService: PersistenceStorageServiceProtocol
     
     init(
         controller: ImageDetailsViewControllerProtocol,
         input: ImageDetailsInput,
-        storageManager: PersistanceStorageManagerProtocol
+        storageService: PersistenceStorageServiceProtocol
     ) {
         self.controller = controller
         self.items = input.items
         self.selectedItem = input.selectedItem
-        self.storageManager = storageManager
+        self.storageService = storageService
     }
 }
 
@@ -59,14 +59,10 @@ extension ImageDetailsPresenter: ImageDetailsPresenterProtocol {
         
         if isFavorite {
             // save Photo to favorites
-            storageManager.save(photo: item.photo)
+            storageService.save(photo: item.photo)
         } else {
             // remove Photo from favorites
-            do {
-                try storageManager.remove(photo: item.photo)
-            } catch {
-                debugPrint(error)
-            }
+            let _ = storageService.remove(photo: item.photo)
         }
     }
 }

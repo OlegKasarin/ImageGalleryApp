@@ -22,20 +22,15 @@ final class ListPhotosService {
     private var favoritePhotos: Set<Photo> = []
     
     private let executor: RequestExecutorProtocol
-    private let storageManager: PersistanceStorageManagerProtocol
+    private let storageService: PersistenceStorageServiceProtocol
     
     init(
         executor: RequestExecutorProtocol,
-        storageManager: PersistanceStorageManagerProtocol
+        storageService: PersistenceStorageServiceProtocol
     ) {
         self.executor = executor
-        self.storageManager = storageManager
-        
-        do {
-            self.favoritePhotos = try storageManager.getPhotos()
-        } catch {
-            self.favoritePhotos = []
-        }
+        self.storageService = storageService
+        self.favoritePhotos = storageService.getPhotos()
     }
 }
 

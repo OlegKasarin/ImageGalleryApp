@@ -12,23 +12,23 @@ final class ListPhotosServiceTests: XCTestCase {
     private var sut: ListPhotosServiceProtocol!
     
     private var requestExecutorSpy: RequestExecutorSpy!
-    private var persistanceStorageManagerSpy: PersistanceStorageManagerSpy!
+    private var storageServiceSpy: PersistenceStorageServiceSpy!
     
     override func setUpWithError() throws {
         requestExecutorSpy = RequestExecutorSpy()
-        persistanceStorageManagerSpy = PersistanceStorageManagerSpy(
+        storageServiceSpy = PersistenceStorageServiceSpy(
             stubbedGetPhotosResult: mockPhotoResult
         )
         sut = ListPhotosService(
             executor: requestExecutorSpy,
-            storageManager: persistanceStorageManagerSpy
+            storageService: storageServiceSpy
         )
     }
 
     override func tearDownWithError() throws {
         sut = nil
         requestExecutorSpy = nil
-        persistanceStorageManagerSpy = nil
+        storageServiceSpy = nil
     }
 
     func testFetchSuccess() async throws {
@@ -42,8 +42,8 @@ final class ListPhotosServiceTests: XCTestCase {
         XCTAssertTrue(requestExecutorSpy.invokedExecuteRequestT)
         XCTAssertEqual(requestExecutorSpy.invokedExecuteRequestTCount, 1)
         
-        XCTAssertTrue(persistanceStorageManagerSpy.invokedGetPhotos)
-        XCTAssertEqual(persistanceStorageManagerSpy.invokedGetPhotosCount, 1)
+        XCTAssertTrue(storageServiceSpy.invokedGetPhotos)
+        XCTAssertEqual(storageServiceSpy.invokedGetPhotosCount, 1)
         
         let favoritePhoto = result.first(where: { $0.isFavorite })!
         XCTAssertEqual(favoritePhoto.id, "2")

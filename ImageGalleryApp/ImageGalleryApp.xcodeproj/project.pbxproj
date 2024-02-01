@@ -43,7 +43,8 @@
 		0036F8AA2B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8A92B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift */; };
 		0036F8AD2B6AF41D00E9DBDC /* RequestExecutorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8AC2B6AF41D00E9DBDC /* RequestExecutorSpy.swift */; };
 		0036F8AF2B6AF48200E9DBDC /* ListPhotosServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8AE2B6AF48200E9DBDC /* ListPhotosServiceTests.swift */; };
-		0036F8B22B6AF4D400E9DBDC /* PersistanceStorageManagerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8B12B6AF4D400E9DBDC /* PersistanceStorageManagerSpy.swift */; };
+		0036F8B22B6AF4D400E9DBDC /* PersistenceStorageServiceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8B12B6AF4D400E9DBDC /* PersistenceStorageServiceSpy.swift */; };
+		0036F8B42B6BE1A900E9DBDC /* PersistenceStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036F8B32B6BE1A900E9DBDC /* PersistenceStorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +104,8 @@
 		0036F8A92B6AD65E00E9DBDC /* CollectionViewLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutBuilder.swift; sourceTree = "<group>"; };
 		0036F8AC2B6AF41D00E9DBDC /* RequestExecutorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestExecutorSpy.swift; sourceTree = "<group>"; };
 		0036F8AE2B6AF48200E9DBDC /* ListPhotosServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotosServiceTests.swift; sourceTree = "<group>"; };
-		0036F8B12B6AF4D400E9DBDC /* PersistanceStorageManagerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceStorageManagerSpy.swift; sourceTree = "<group>"; };
+		0036F8B12B6AF4D400E9DBDC /* PersistenceStorageServiceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceStorageServiceSpy.swift; sourceTree = "<group>"; };
+		0036F8B32B6BE1A900E9DBDC /* PersistenceStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceStorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				0036F8872B69120700E9DBDC /* ServiceAssembly.swift */,
 				0036F86B2B685ED500E9DBDC /* ListPhotosService.swift */,
+				0036F8B32B6BE1A900E9DBDC /* PersistenceStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -373,7 +376,7 @@
 		0036F8B02B6AF4C100E9DBDC /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0036F8B12B6AF4D400E9DBDC /* PersistanceStorageManagerSpy.swift */,
+				0036F8B12B6AF4D400E9DBDC /* PersistenceStorageServiceSpy.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				0036F82D2B67F01F00E9DBDC /* AppDelegate.swift in Sources */,
 				0036F82F2B67F01F00E9DBDC /* SceneDelegate.swift in Sources */,
 				0036F89C2B6A5EE900E9DBDC /* ImageDetailsCollectionViewCell.swift in Sources */,
+				0036F8B42B6BE1A900E9DBDC /* PersistenceStorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,7 +557,7 @@
 			files = (
 				0036F8AF2B6AF48200E9DBDC /* ListPhotosServiceTests.swift in Sources */,
 				0036F8AD2B6AF41D00E9DBDC /* RequestExecutorSpy.swift in Sources */,
-				0036F8B22B6AF4D400E9DBDC /* PersistanceStorageManagerSpy.swift in Sources */,
+				0036F8B22B6AF4D400E9DBDC /* PersistenceStorageServiceSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
