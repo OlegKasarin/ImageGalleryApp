@@ -19,7 +19,6 @@ struct ImageGalleryAssembly {
             router: router,
             listPhotosService: ServiceAssembly.listPhotosService
         )
-        presenter.controller = controller
         
         controller.presenter = presenter
         

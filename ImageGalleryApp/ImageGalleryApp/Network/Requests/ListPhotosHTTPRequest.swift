@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct ListPhotosHTTPRequest: HTTPRequest {
+struct ListPhotosHTTPRequest {
     let page: Int
     let perPage: Int
-    
-    // MARK: - HTTPRequest
-    
+}
+
+// MARK: - HTTPRequest
+
+extension ListPhotosHTTPRequest: HTTPRequest {
     var method: HTTPRequestMethod {
         .get
     }

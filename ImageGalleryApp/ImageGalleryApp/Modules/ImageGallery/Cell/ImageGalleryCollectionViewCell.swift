@@ -11,7 +11,7 @@ final class ImageGalleryCollectionViewCell: UICollectionViewCell {
     static var cellID = "ImageGalleryCollectionViewCell"
     private let favoriteImageSize: CGFloat = 24
     
-    lazy var imageView: BrandedImageView = {
+    private lazy var imageView: BrandedImageView = {
         let view = BrandedImageView()
         view.contentMode = .scaleAspectFill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +47,10 @@ final class ImageGalleryCollectionViewCell: UICollectionViewCell {
     func refresh(item: ImageGalleryCellItem) {
         imageView.load(imageURL: item.imageThumbURL, placeholder: nil)
         favoriteImageView.isHidden = !item.isFavorite
+    }
+    
+    func cancelDownloadTask() {
+        imageView.kf.cancelDownloadTask()
     }
 }
 

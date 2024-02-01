@@ -19,7 +19,6 @@ final class ListPhotosService {
     private(set) var isLoading = false
     private var currentPage = 1
     
-    private var fetchTask: Task<[Photo], Error>?
     private var favoritePhotos: Set<Photo> = []
     
     private let executor: RequestExecutorProtocol
@@ -56,40 +55,39 @@ extension ListPhotosService: ListPhotosServiceProtocol {
         
         return try await fetch(page: currentPage)
     }
-    
+}
+
+// MARK: - Private
+
+private extension ListPhotosService {
     func fetch(page: Int) async throws -> [Photo] {
-        fetchTask = Task { () -> [Photo] in
-            let request = ListPhotosHTTPRequest(
-                page: page,
-                perPage: perPageCount
-            )
-            let responses: [PhotoResponse] = try await executor.execute(request: request)
-            
-            let photos: [Photo] = responses.compactMap { response -> Photo? in
-                guard let photo = Photo(response: response) else {
-                    return nil
-                }
-                
-                return favoritePhotos.contains(photo)
-                    ? photo.set(isFavorite: true)
-                    : photo
-            }
-            
-            return photos
-        }
+        let request = ListPhotosHTTPRequest(page: page, perPage: perPageCount)
         
-        currentPage += 1
         do {
-            let result = try await fetchTask?.value ?? []
+            let response: [PhotoResponse] = try await executor.execute(request: request)
+            let photos = handle(response: response)
+            currentPage += 1
             isLoading = false
-            return result
+            return photos
         } catch {
             isLoading = false
-            return try handle(result: [], error: error)
+            return try handle(error: error)
         }
     }
     
-    private func handle(result: [Photo], error: Error) throws -> [Photo] {
+    func handle(response: [PhotoResponse]) -> [Photo] {
+        response.compactMap { resp -> Photo? in
+            guard let photo = Photo(response: resp) else {
+                return nil
+            }
+            
+            return favoritePhotos.contains(photo)
+                ? photo.set(isFavorite: true)
+                : photo
+        }
+    }
+    
+    func handle(error: Error) throws -> [Photo] {
         guard let networkError = error as? NetworkError else {
             throw error
         }

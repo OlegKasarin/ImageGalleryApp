@@ -39,12 +39,15 @@ extension HTTPRequestExecutor: RequestExecutorProtocol {
         
         return objects
     }
-    
-    private func fetchData(request: URLRequest) async throws -> URLResponsePayload {
+}
+
+// MARK: - Private
+
+private extension HTTPRequestExecutor {
+    func fetchData(request: URLRequest) async throws -> URLResponsePayload {
         do {
             return try await fetch(request: request)
         } catch {
-            // Handle network error
             switch (error as NSError).code {
             case
                 NSURLErrorNotConnectedToInternet,
@@ -58,7 +61,7 @@ extension HTTPRequestExecutor: RequestExecutorProtocol {
         }
     }
     
-    private func fetch(request: URLRequest) async throws -> URLResponsePayload {
+    func fetch(request: URLRequest) async throws -> URLResponsePayload {
         if #available(iOS 14.0.0, *) {
             return try await URLSession.shared.data(for: request)
         } else {

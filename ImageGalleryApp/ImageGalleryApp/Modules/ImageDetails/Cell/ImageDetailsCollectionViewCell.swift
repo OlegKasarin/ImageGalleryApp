@@ -11,7 +11,7 @@ final class ImageDetailsCollectionViewCell: UICollectionViewCell {
     static var cellID = "ImageDetailsCollectionViewCell"
     static let nibName = "ImageDetailsCollectionViewCell"
     
-    @IBOutlet private weak var imageView: BrandedImageView!
+    @IBOutlet private weak var imageView: BrandedImageView?
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var favoriteImageView: UIImageView!
     @IBOutlet private weak var favoriteButton: UIButton!
@@ -38,7 +38,7 @@ final class ImageDetailsCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+        imageView?.image = nil
         descriptionLabel.text = nil
         favoriteImageView.image = nil
     }
@@ -47,7 +47,7 @@ final class ImageDetailsCollectionViewCell: UICollectionViewCell {
         id = item.id
         self.action = action
         
-        imageView.load(
+        imageView?.load(
             imageURL: item.imageRegularURL ?? item.imageThumbURL,
             lowResolutionURL: item.imageThumbURL,
             placeholder: nil

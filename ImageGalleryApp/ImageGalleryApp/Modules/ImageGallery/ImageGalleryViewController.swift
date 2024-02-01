@@ -150,7 +150,7 @@ extension ImageGalleryViewController: UICollectionViewDelegate {
             return
         }
         
-        imageCell.imageView.kf.cancelDownloadTask()
+        imageCell.cancelDownloadTask()
     }
     
     func collectionView(

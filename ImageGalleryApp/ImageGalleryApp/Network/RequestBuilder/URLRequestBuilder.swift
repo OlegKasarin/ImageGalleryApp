@@ -11,15 +11,19 @@ protocol URLRequestBuilderProtocol {
     func buildThrows(request: HTTPRequest) throws -> URLRequest
 }
 
-final class URLRequestBuilder: URLRequestBuilderProtocol {
+final class URLRequestBuilder {
+    private let baseURLString = "https://api.unsplash.com"
+    
     enum URLRequestBuilderError: Error {
         case invalidBaseURL
         case invalidURLParameters
         case invalidBodyPayload
     }
-    
-    private let baseURLString = "https://api.unsplash.com"
-    
+}
+
+// MARK: - URLRequestBuilderProtocol
+
+extension URLRequestBuilder: URLRequestBuilderProtocol {
     func buildThrows(request: HTTPRequest) throws -> URLRequest {
         do {
             let url = try buildURL(request: request)
@@ -30,7 +34,7 @@ final class URLRequestBuilder: URLRequestBuilderProtocol {
     }
 }
 
-// MARK: - Private API
+// MARK: - Private
 
 private extension URLRequestBuilder {
     func buildURL(request: HTTPRequest) throws -> URL {
@@ -38,12 +42,7 @@ private extension URLRequestBuilder {
             throw URLRequestBuilderError.invalidBaseURL
         }
         
-        do {
-            let url = try buildURL(baseURL: baseURL, request: request)
-            return url
-        } catch let error {
-            throw error
-        }
+        return try buildURL(baseURL: baseURL, request: request)
     }
     
     func buildURL(baseURL: URL, request: HTTPRequest) throws -> URL {
@@ -81,12 +80,8 @@ private extension URLRequestBuilder {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
         
-        do {
-            let body = try buildBody(request: request)
-            urlRequest.httpBody = body
-        } catch let error {
-            throw error
-        }
+        let body = try buildBody(request: request)
+        urlRequest.httpBody = body
         
         urlRequest = addHeaders(from: request, to: urlRequest)
         
